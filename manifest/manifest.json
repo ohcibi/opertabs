@@ -1,0 +1,74 @@
+{
+   "developer" : {
+      "name" : "Tobias Witt"
+   },
+   "browser_action" : {
+      "browser_style" : true,
+      "default_icon" : {
+         "48" : "data/icon.png",
+         "96" : "data/icon-96.png",
+         "16" : "data/icon-16.png",
+         "128" : "data/icon-128.png"
+      },
+      "theme_icons" : [
+         {
+            "size" : 16,
+            "light" : "data/icon/icon-16-white.png",
+            "dark" : "data/icon-16.png"
+         },
+         {
+            "size" : 32,
+            "dark" : "data/icon-32.png",
+            "light" : "data/icon/icon-32-white.png"
+         }
+      ],
+      "default_title" : "Toggle Tab Sidebar"
+   },
+   "description" : "This Firefox add-on arranges tabs in a vertical rather than horizontal fashion.",
+   "manifest_version" : 2,
+   "short_name" : "OT",
+   "options_ui" : {
+      "browser_style" : true,
+      "page" : "options/index.html"
+   },
+   "applications" : {
+      "gecko" : {
+         "strict_min_version" : "60.0",
+         "id" : "opertabs@dwgadf.de"
+      }
+   },
+   "version" : "0.0.0",
+   "homepage_url" : "https://github.com/ohcibi/opertabs",
+   "commands" : {
+      "_execute_sidebar_action" : {
+         "description" : "Hotkey for showing/hiding the tab sidebar",
+         "suggested_key" : {
+            "default" : "Ctrl+Shift+V"
+         }
+      }
+   },
+   "name" : "Opertabs",
+   "incognito" : "spanning",
+   "permissions" : [
+      "storage",
+      "tabs",
+      "activeTab",
+      "unlimitedStorage",
+      "sessions",
+      "bookmarks"
+   ],
+   "author" : "Tobias Witt",
+   "sidebar_action" : {
+      "default_title" : "Vertical Tabs Reloaded",
+      "browser_style" : true,
+      "default_icon" : "data/icon-16.png",
+      "default_panel" : "sidebar/index.html"
+   },
+   "icons" : {
+      "16" : "data/icon-16.png",
+      "128" : "data/icon-128.png",
+      "48" : "data/icon.png",
+      "96" : "data/icon-96.png"
+   },
+   "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self';"
+}
