@@ -1,3 +1,77 @@
-<button {{on "click" this.activateTab}} title={{this.tab.title}} class="{{if this.tab.active "active"}} list-group-item list-group-item-action text-nowrap" ...attributes>
-  {{this.tab.title}}
+<button
+    {{on "click" this.activateTab}}
+    {{on "contextmenu" this.contextMenu}}
+    {{did-insert this.attachToggle}}
+    id={{this.tabButtonId}}
+    title={{this.tab.title}}
+    class="{{if this.tab.active "active"}} list-group-item list-group-item-action text-nowrap"
+    ...attributes>
+    {{this.tab.title}}
 </button>
+
+<BsDropdown::Menu
+  {{on-other "click" this.closeContextmenu}}
+  @renderInPlace={{false}}
+  @isOpen={{this.showContextmenu}}
+  @toggleElement={{this.buttonElement}}
+  @dropdownElementId={{this.tabButtonMenuId}}
+  as |menu|>
+
+  <menu.item>
+    <button {{on "click" this.reloadTab}} type="button" class="dropdown-item">Reload Tab</button>
+  </menu.item>
+  <menu.item>
+    <button type="button" class="dropdown-item">Mute Tab</button>
+  </menu.item>
+  <menu.item>
+    <button type="button" class="dropdown-item">Pin Tab</button>
+  </menu.item>
+  <menu.item>
+    <button type="button" class="dropdown-item">Clone Tab</button>
+  </menu.item>
+
+  <menu.divider />
+
+  <menu.item>
+    <button type="button" class="dropdown-item">Select All Tabs</button>
+  </menu.item>
+  <menu.item>
+    <button type="button" class="dropdown-item">Bookmark Tab</button>
+  </menu.item>
+  <menu.item>
+    <button type="button" class="dropdown-item">Open in Tab Environment</button>
+  </menu.item>
+  <menu.item>
+    <button type="button" class="dropdown-item">Move Tab</button>
+  </menu.item>
+  <menu.item>
+    <button type="button" class="dropdown-item">Send Tab to Device</button>
+  </menu.item>
+
+  <menu.divider />
+  <menu.item>
+    <button type="button" class="dropdown-item">Shufffle all Tabs</button>
+  </menu.item>
+  <menu.item>
+    <button type="button" class="dropdown-item">Reload all Tabs</button>
+  </menu.item>
+  <menu.item>
+    <button type="button" class="dropdown-item">Bookmark all Tabs</button>
+  </menu.item>
+
+
+  <menu.divider />
+
+  <menu.item>
+    <button type="button" class="dropdown-item">Close Tabs below</button>
+  </menu.item>
+  <menu.item>
+    <button type="button" class="dropdown-item">Close other Tabs</button>
+  </menu.item>
+  <menu.item>
+    <button type="button" class="dropdown-item">Restore closed Tab</button>
+  </menu.item>
+  <menu.item>
+    <button {{on "click" this.closeTab}} type="button" class="dropdown-item">Close Tab</button>
+  </menu.item>
+</BsDropdown::Menu>

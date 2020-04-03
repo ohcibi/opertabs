@@ -1,12 +1,45 @@
 import Component from '@glimmer/component';
+import { tracked } from '@glimmer/tracking';
 import { action, computed } from '@ember/object';
+import { guidFor } from '@ember/object/internals';
 
 export default class TabButtonComponent extends Component {
+  tabButtonId = `TabButton${guidFor(this)}`;
+
+  tabButtonMenuId = `TabButtonMenu${guidFor(this)}`;
+
+  @tracked buttonElement;
+
+  @tracked showContextmenu = false;
+
   @action
   async activateTab() {
     if (!this.tab.active) {
       browser.tabs.update(this.tab.id, { active: true });
     }
+  }
+
+  @action
+  closeContextmenu() {
+    this.showContextmenu = false;
+  }
+
+  @action
+  contextMenu(e) {
+    if (e) {
+      e.preventDefault();
+    }
+    this.showContextmenu = true;
+  }
+
+  @action
+  attachToggle(element) {
+    this.buttonElement = element;
+  }
+
+  @action
+  closeTab() {
+    browser.tabs.remove(this.tab.id);
   }
 
   constructor(...args) {
