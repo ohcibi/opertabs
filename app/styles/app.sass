@@ -1,0 +1,19 @@
+@import ember-bootstrap/bootstrap
+
+
+.list-group-item,
+.list-group-item-action
+  cursor: default
+  background-image: linear-gradient(right to left, rgba(0,0,0,1), rgba(0,0,0,0))
+
+  &
+    &:not(.active)
+      &:active
+        background: $list-group-hover-bg
+        color: $list-group-action-hover-color
+
+    &:active,
+    &:focus,
+    &:focus-within
+      box-shadow: none
+      outline: 0

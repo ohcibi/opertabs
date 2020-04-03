@@ -1,1 +1,5 @@
-{{outlet}}
+<div class="list-group list-group-flush">
+  {{#each model as |tab|}}
+    <TabButton @tab={{tab}} />
+  {{/each}}
+</div>

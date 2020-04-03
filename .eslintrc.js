@@ -14,14 +14,22 @@ module.exports = {
     'ember'
   ],
   extends: [
-    'eslint:recommended',
-    'plugin:ember/recommended'
+    'plugin:prettier/recommended',
+    'plugin:ember/recommended',
   ],
   env: {
-    browser: true
+    browser: true,
+    webextensions: true
   },
   rules: {
-    'ember/no-jquery': 'error'
+    'ember/no-jquery': 'error',
+    'node/no-extraneous-require': ["error", {
+      allowModules: [
+        "broccoli-merge-trees",
+        "broccoli-funnel",
+        "broccoli-source"
+      ]
+    }]
   },
   overrides: [
     // node files

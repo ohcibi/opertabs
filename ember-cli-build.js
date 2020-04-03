@@ -5,16 +5,24 @@ const { WatchedDir } = require('broccoli-source');
 const funnel = require('broccoli-funnel');
 const mergeTrees = require('broccoli-merge-trees');
 
-module.exports = function(defaults) {
-  let app = new EmberApp(defaults, {
-    // Add options here
-  });
+module.exports = function (defaults) {
+  const options = {
+    'ember-bootstrap': {
+      bootstrapVersion: 4,
+      importBootstrapCSS: false
+    },
+    sassOptions: {
+      extension: 'sass'
+    }
+  };
+  let app = new EmberApp(defaults, options);
 
   const optionsApp = new EmberApp(defaults, {
+    ...options,
     trees: {
       app: new WatchedDir('app-options')
     }
-  })
+  });
 
   // Use `app.import` to add additional libraries to the generated
   // output files.
@@ -29,10 +37,15 @@ module.exports = function(defaults) {
   // please specify an object with the list of modules as keys
   // along with the exports of each module as its value.
 
-
   return mergeTrees([
-    funnel(app.toTree(), { destDir: 'sidebar' }),
-    funnel(optionsApp.toTree(), { destDir: 'options'}),
+    funnel(app.toTree(), {
+      destDir: 'sidebar',
+      annotation: 'Funnel: sidebar output'
+    }),
+    funnel(optionsApp.toTree(), {
+      destDir: 'options',
+      annotation: 'Funnel: options output'
+    }),
     'manifest'
   ]);
 };
