@@ -1,8 +1,16 @@
 import Service from '@ember/service';
+import { action } from '@ember/object';
 
 export default class TabsService extends Service {
+  @action
+  async browserAction() {
+    await browser.sidebarAction.toggle();
+  }
+
   constructor(...args) {
     super(...args);
+
+    browser.browserAction.onClicked.addListener(this.browserAction);
   }
 
   async getAll() {

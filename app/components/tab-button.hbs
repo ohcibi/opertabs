@@ -4,9 +4,29 @@
     {{did-insert this.attachToggle}}
     id={{this.tabButtonId}}
     title={{this.tab.title}}
-    class="{{if this.tab.active "active"}} list-group-item list-group-item-action text-nowrap"
+    class="{{if this.tab.active "active"}} tab-button list-group-item list-group-item-action"
     ...attributes>
-    {{this.tab.title}}
+
+    <div class="d-flex">
+      <span class="tab-icon align-middle d-inline-block text-center">
+        {{#unless this.isLoading}}
+          <span>
+            <img class="rounded" src={{this.tab.favIconUrl}}/>
+          </span>
+        {{else}}
+          <FaIcon @icon="sun" @spin={{true}} />
+        {{/unless}}
+      </span>
+
+      <span class="tab-title align-middle ml-1 mr-auto">
+        {{this.tab.title}}
+      </span>
+    </div>
+
+    <button {{on "click" this.closeTab}} title="Tab schließen" type="button" class="align-middle position-absolute close" aria-label="Close">
+      <span aria-hidden="true" class="d-block h-100 text-center">&times;</span>
+    </button>
+
 </button>
 
 <BsDropdown::Menu

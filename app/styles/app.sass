@@ -17,3 +17,52 @@
     &:focus-within
       box-shadow: none
       outline: 0
+
+  &.tab-button
+    $icon-max-size: (20rem/12)
+    padding-right: .5rem
+
+    .tab-icon
+      flex-basis: $icon-max-size
+      width: $icon-max-size
+
+      img
+        max-width: $icon-max-size
+        max-height: $icon-max-size
+        height: auto
+        padding: 0
+
+    .tab-title
+      min-width: 0
+      transition: background-image .2s ease-in
+      padding-right: .25rem
+      text-overflow: ellipsis
+      overflow: hidden
+      white-space: nowrap
+
+    .close
+      opacity: 0
+      transition: all .2s ease-in
+      position: absolute
+      right: $list-group-item-padding-x/2
+      top: 50%
+      transform: translateY(-50%)
+      width: $icon-max-size
+      height: $icon-max-size
+      min-width: $icon-max-size
+      min-height: $icon-max-size
+      border-radius: $border-radius-sm
+      text-align: center
+
+      &:hover
+        background: rgba(0, 0, 0, .3)
+        transition: none
+
+    &:hover
+      .tab-title
+        background: linear-gradient(to right, black, black 79%, transparent 89%, transparent)
+        background-clip: text
+        color: transparent
+
+      .close
+        opacity: 1
