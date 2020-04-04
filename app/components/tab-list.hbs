@@ -1,0 +1,7 @@
+<div class="list-group list-group-flush">
+  {{#each model as |tab|}}
+    {{yield (hash
+      button=(component this.tabButtonComponent tab=tab)
+    )}}
+  {{/each}}
+</div>

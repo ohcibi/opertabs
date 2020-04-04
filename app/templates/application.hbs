@@ -1,8 +1,6 @@
-<div class="list-group list-group-flush">
-  {{#each model as |tab|}}
-    <TabButton @tab={{tab}} />
-  {{/each}}
-</div>
+<TabList class="list-group list-group-flush" as |tab|>
+  <TabButton @tab={{tab}} />
+</TabList>
 
 <svg height="0">
   <mask id="tabButtonMask">
